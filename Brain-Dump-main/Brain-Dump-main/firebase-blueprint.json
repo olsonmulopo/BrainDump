@@ -1,0 +1,119 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile record for authenticated workspace users",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "User ID matching Firebase Auth UID",
+          "maxLength": 128
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address",
+          "maxLength": 256,
+          "format": "email"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 128
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "User avatar photo URL",
+          "maxLength": 1024
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last updated timestamp",
+          "maxLength": 64
+        }
+      },
+      "required": ["id", "email"]
+    },
+    "Workspace": {
+      "title": "Workspace",
+      "description": "Visual workspace document containing boards, cards, items, and settings",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique workspace document ID",
+          "maxLength": 128
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "User ID of the workspace owner",
+          "maxLength": 128
+        },
+        "title": {
+          "type": "string",
+          "description": "Workspace title",
+          "maxLength": 256
+        },
+        "version": {
+          "type": "number",
+          "description": "Schema version"
+        },
+        "currentBoardId": {
+          "type": "string",
+          "description": "Active board ID",
+          "maxLength": 128
+        },
+        "boards": {
+          "type": "object",
+          "description": "Dictionary of boards keyed by board ID"
+        },
+        "items": {
+          "type": "object",
+          "description": "Dictionary of canvas items keyed by item ID"
+        },
+        "tabs": {
+          "type": "array",
+          "description": "Room/board tabs array"
+        },
+        "settings": {
+          "type": "object",
+          "description": "Canvas background, theme, and grid settings"
+        },
+        "timeLogs": {
+          "type": "array",
+          "description": "Time management log entries"
+        },
+        "trash": {
+          "type": "object",
+          "description": "Trashed items and boards"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp",
+          "maxLength": 64
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last updated timestamp",
+          "maxLength": 64
+        }
+      },
+      "required": ["id", "ownerId", "title", "version"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles accessible strictly by the profile owner"
+    },
+    "/workspaces/{workspaceId}": {
+      "schema": "Workspace",
+      "description": "Workspaces owned and managed by authenticated users"
+    }
+  }
+}

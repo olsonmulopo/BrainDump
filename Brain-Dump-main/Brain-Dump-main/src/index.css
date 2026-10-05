@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* Modern Sleek Scrollbars matching color theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.35) transparent;
+}
+
+.dark,
+.dark * {
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-track-piece {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.35);
+  border-radius: 9999px;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.55);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.35) transparent;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+
+/* Ensure Text Editing always shows the I-beam text cursor, NEVER a drag hand */
+input,
+textarea,
+[contenteditable="true"],
+[contenteditable="true"] *,
+.select-text,
+.select-text *,
+.cursor-text,
+.cursor-text *,
+.task-text {
+  cursor: text !important;
+  user-select: text !important;
+}
+
+/* Ensure interactive buttons and checkboxes show click pointer */
+button,
+button *,
+[role="button"],
+[role="button"] *,
+.cursor-pointer,
+.task-checkbox,
+a,
+a * {
+  cursor: pointer !important;
+}
+
+/* Non-draggable app controls cancel drag hands */
+.no-drag {
+  cursor: default;
+}
+
+/* Cancel parent grab / grabbing on canvas items when hovering over inputs, editors, or no-drag controls */
+.group\/item:has(input:hover),
+.group\/item:has(textarea:hover),
+.group\/item:has([contenteditable="true"]:hover),
+.group\/item:has(.select-text:hover),
+.group\/item:has(.cursor-text:hover),
+.group\/item:has(.no-drag:hover),
+.group\/item:has(button:hover) {
+  cursor: default !important;
+}
